@@ -24,3 +24,6 @@ C:\Users\nagyp\documents\visual studio 2015\Projects\TestGenerator\TestGenerator
 C:\Users\nagyp\documents\visual studio 2015\Projects\TestGenerator\TestGenerator\bin\Debug\MetroFramework.Fonts.dll
 C:\Users\nagyp\documents\visual studio 2015\Projects\TestGenerator\TestGenerator\bin\Debug\MetroFramework.Design.dll
 C:\Users\nagyp\documents\visual studio 2015\Projects\TestGenerator\TestGenerator\obj\Debug\TestGenerator.csprojResolveAssemblyReference.cache
+C:\Users\zero\Documents\Facultate\ISA An 3\II\Proiect\csharp-school-testsgenerator\TestGenerator\bin\Debug\TestGenerator.exe.config
+C:\Users\zero\Documents\Facultate\ISA An 3\II\Proiect\csharp-school-testsgenerator\TestGenerator\obj\Debug\TestGenerator.exe
+C:\Users\zero\Documents\Facultate\ISA An 3\II\Proiect\csharp-school-testsgenerator\TestGenerator\obj\Debug\TestGenerator.pdb

@@ -59,6 +59,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="business\QuestionBusiness.cs" />
     <Compile Include="business\RoleBusiness.cs" />
     <Compile Include="business\TestBusiness.cs" />
     <Compile Include="business\UserBusiness.cs" />
