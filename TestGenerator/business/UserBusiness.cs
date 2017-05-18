@@ -14,6 +14,8 @@ namespace TestGenerator.business
         private string display_name;
         private Int16 access_level;
 
+        private string role_name;
+
 
         public UserBusiness()
         {
@@ -30,7 +32,7 @@ namespace TestGenerator.business
 
         public UserBusiness(String username, String password, String display_name, Int16 access_level)
         {
-                       this.Username = username;
+            this.Username = username;
             this.Password = UserSecurity.hashPassword(password);
             this.Display_name = display_name;
             this.Access_level = access_level;
@@ -85,7 +87,7 @@ namespace TestGenerator.business
 
         public Boolean updateUser()
         {
-            UserDataModel userToUpdate = new UserDataModel(this.Username, this.Password, this.Display_name, this.Access_level);
+            UserDataModel userToUpdate = new UserDataModel(this.User_id, this.Username, this.Password, this.Display_name, this.Access_level);
 
             UserDataGateway userGateway = new UserDataGateway();
             return userGateway.update(userToUpdate);
@@ -96,6 +98,15 @@ namespace TestGenerator.business
 
             UserDataGateway userGateway = new UserDataGateway();
             return userGateway.delete(this.User_id);
+
+        }
+
+        public Boolean deleteUserByUsername()
+        {
+
+            UserDataGateway userGateway = new UserDataGateway();
+
+            return userGateway.deleteByUsername(this.Username);
 
         }
 
@@ -111,10 +122,20 @@ namespace TestGenerator.business
                 this.Password = userToView.Password;
                 this.Display_name = userToView.Display_name;
                 this.Access_level = (Int16) userToView.Access_level;
+                this.Role_name = userToView.Role_name;
                 return this;
             }
 
             return null;
+
+        }
+
+        public List<UserDataModel> search()
+        {
+
+            UserDataGateway userGateway = new UserDataGateway();
+            return userGateway.search(this.Username);
+               
 
         }
 
@@ -206,6 +227,17 @@ namespace TestGenerator.business
             }
         }
 
+        public string Role_name
+        {
+            get
+            {
+                return role_name;
+            }
 
+            set
+            {
+                role_name = value;
+            }
+        }
     }
 }

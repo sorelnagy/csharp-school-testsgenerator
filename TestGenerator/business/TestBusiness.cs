@@ -90,13 +90,6 @@ namespace TestGenerator.business
             return null;
         }
 
-        public List<TestDataModel> viewTestByTestName()
-        {
-            TestDataGateway testGateway = new TestDataGateway();
-            return testGateway.read(this.test_name);
-        }
-
-
 
         public int Test_id
         {

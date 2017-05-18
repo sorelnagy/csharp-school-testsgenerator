@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 
 namespace TestGenerator.data.model
 {
@@ -123,6 +124,11 @@ namespace TestGenerator.data.model
             {
                 role_name = value;
             }
+        }
+
+        public static implicit operator UserDataModel(ListViewItem v)
+        {
+            throw new NotImplementedException();
         }
     }
 }

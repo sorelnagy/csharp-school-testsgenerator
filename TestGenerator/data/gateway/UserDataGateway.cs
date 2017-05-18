@@ -76,7 +76,7 @@ namespace TestGenerator.DataAccessLayer
         public UserDataModel read(String username)
         {
 
-            string query = "SELECT * FROM users WHERE username = @user_name LIMIT 1";
+            string query = "SELECT * FROM users as u INNER JOIN user_roles as ur WHERE u.access_level = ur.role_id AND u.username = @user_name LIMIT 1";
             UserDataModel newUser = null;
 
             if (this.connection.openConnection() == true)
@@ -91,7 +91,7 @@ namespace TestGenerator.DataAccessLayer
                 while (dataReader.Read())
                 {
                     Console.WriteLine(dataReader.Read().ToString());
-                    newUser = new UserDataModel(Int32.Parse(dataReader["user_id"].ToString()),dataReader["username"].ToString(), dataReader["password"].ToString(), dataReader["display_name"].ToString(), Int32.Parse(dataReader["access_level"].ToString()));
+                    newUser = new UserDataModel(Int32.Parse(dataReader["user_id"].ToString()),dataReader["username"].ToString(), dataReader["password"].ToString(), dataReader["display_name"].ToString(), Int32.Parse(dataReader["access_level"].ToString()),dataReader["role_name"].ToString());
                 }
 
                 this.connection.closeConnection();
@@ -126,6 +126,39 @@ namespace TestGenerator.DataAccessLayer
                 this.connection.closeConnection();
             }
             
+            return usersList;
+
+        }
+
+        //Lists all the users
+        public List<UserDataModel> search(String username)
+        {
+            
+            string query = "SELECT * FROM users as u INNER JOIN user_roles as ur WHERE u.username LIKE @user_name OR u.display_name LIKE @user_name HAVING u.access_level=ur.role_id";
+            List<UserDataModel> usersList = new List<UserDataModel>();
+          
+            if (this.connection.openConnection() == true)
+            {
+                MySqlCommand cmd = new MySqlCommand(query, this.connection.getConnection());
+
+                cmd.Parameters.Add(new MySqlParameter("@user_name", "%" + username + "%"));
+
+
+                cmd.ExecuteNonQuery();
+
+                MySqlDataReader dataReader = cmd.ExecuteReader();
+
+                Console.WriteLine("Reading All Users From Database by search " + username);
+
+                while (dataReader.Read())
+                {
+                    Console.WriteLine("user found --->" + dataReader["username"].ToString());
+                    usersList.Add(new UserDataModel(Int32.Parse(dataReader["user_id"].ToString()), dataReader["username"].ToString(), dataReader["password"].ToString(), dataReader["display_name"].ToString(), Int32.Parse(dataReader["access_level"].ToString()), dataReader["role_name"].ToString()));
+                }
+
+                this.connection.closeConnection();
+            }
+
             return usersList;
 
         }
@@ -177,6 +210,29 @@ namespace TestGenerator.DataAccessLayer
             return false;
 
         }
+
+        public Boolean deleteByUsername(String username)
+        {
+
+            string query = "DELETE FROM users WHERE username = @username";
+
+            if (this.connection.openConnection() == true)
+            {
+                MySqlCommand cmd = new MySqlCommand(query, this.connection.getConnection());
+                cmd.Parameters.Add(new MySqlParameter("@username", username));
+
+                cmd.ExecuteNonQuery();
+                this.connection.closeConnection();
+
+                return true;
+
+            }
+
+            return false;
+
+        }
+
+        
 
     }
 }

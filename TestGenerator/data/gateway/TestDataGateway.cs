@@ -72,7 +72,7 @@ namespace TestGenerator.data.gateway
         }
 
         //Get Tests by Test_name;
-        public List<TestDataModel> read(string testName)
+        public List<TestDataModel> search(string testName)
         {
 
             string query = "SELECT * FROM tests WHERE test_name like '%@test_name%'"; //like

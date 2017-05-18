@@ -1,4 +1,6 @@
-﻿namespace TestGenerator.presentation
+﻿using System;
+
+namespace TestGenerator.presentation
 {
     partial class FormAdmin
     {
@@ -42,10 +44,11 @@
             this.textBoxUserPassword = new System.Windows.Forms.TextBox();
             this.textBoxUserDisplayName = new System.Windows.Forms.TextBox();
             this.tabPage2 = new System.Windows.Forms.TabPage();
+            this.textBoxSearchUser = new System.Windows.Forms.TextBox();
+            this.buttonEditUser = new System.Windows.Forms.Button();
+            this.buttonDeleteUser = new System.Windows.Forms.Button();
             this.listViewUsers = new System.Windows.Forms.ListView();
             this.label5 = new System.Windows.Forms.Label();
-            this.button1 = new System.Windows.Forms.Button();
-            this.button2 = new System.Windows.Forms.Button();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.tabPage2.SuspendLayout();
@@ -86,7 +89,7 @@
             // 
             // buttonClearForm
             // 
-            this.buttonClearForm.Location = new System.Drawing.Point(546, 366);
+            this.buttonClearForm.Location = new System.Drawing.Point(374, 282);
             this.buttonClearForm.Name = "buttonClearForm";
             this.buttonClearForm.Size = new System.Drawing.Size(133, 45);
             this.buttonClearForm.TabIndex = 13;
@@ -97,14 +100,14 @@
             // 
             // textBoxUserName
             // 
-            this.textBoxUserName.Location = new System.Drawing.Point(482, 142);
+            this.textBoxUserName.Location = new System.Drawing.Point(310, 58);
             this.textBoxUserName.Name = "textBoxUserName";
             this.textBoxUserName.Size = new System.Drawing.Size(197, 26);
             this.textBoxUserName.TabIndex = 12;
             // 
             // buttonAddUser
             // 
-            this.buttonAddUser.Location = new System.Drawing.Point(365, 366);
+            this.buttonAddUser.Location = new System.Drawing.Point(193, 282);
             this.buttonAddUser.Name = "buttonAddUser";
             this.buttonAddUser.Size = new System.Drawing.Size(165, 45);
             this.buttonAddUser.TabIndex = 10;
@@ -115,7 +118,7 @@
             // labelCreateUserMessage
             // 
             this.labelCreateUserMessage.AutoSize = true;
-            this.labelCreateUserMessage.Location = new System.Drawing.Point(448, 438);
+            this.labelCreateUserMessage.Location = new System.Drawing.Point(276, 354);
             this.labelCreateUserMessage.Name = "labelCreateUserMessage";
             this.labelCreateUserMessage.Size = new System.Drawing.Size(189, 20);
             this.labelCreateUserMessage.TabIndex = 9;
@@ -125,7 +128,7 @@
             // comboBoxUserRoles
             // 
             this.comboBoxUserRoles.FormattingEnabled = true;
-            this.comboBoxUserRoles.Location = new System.Drawing.Point(482, 298);
+            this.comboBoxUserRoles.Location = new System.Drawing.Point(310, 214);
             this.comboBoxUserRoles.Name = "comboBoxUserRoles";
             this.comboBoxUserRoles.Size = new System.Drawing.Size(197, 28);
             this.comboBoxUserRoles.TabIndex = 8;
@@ -133,7 +136,7 @@
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(361, 298);
+            this.label4.Location = new System.Drawing.Point(189, 214);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(84, 20);
             this.label4.TabIndex = 7;
@@ -142,7 +145,7 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(359, 196);
+            this.label3.Location = new System.Drawing.Point(187, 112);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(110, 20);
             this.label3.TabIndex = 6;
@@ -151,7 +154,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(363, 246);
+            this.label2.Location = new System.Drawing.Point(191, 162);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(82, 20);
             this.label2.TabIndex = 5;
@@ -160,7 +163,7 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(382, 142);
+            this.label1.Location = new System.Drawing.Point(210, 58);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(87, 20);
             this.label1.TabIndex = 4;
@@ -168,14 +171,14 @@
             // 
             // textBoxUserPassword
             // 
-            this.textBoxUserPassword.Location = new System.Drawing.Point(482, 243);
+            this.textBoxUserPassword.Location = new System.Drawing.Point(310, 159);
             this.textBoxUserPassword.Name = "textBoxUserPassword";
             this.textBoxUserPassword.Size = new System.Drawing.Size(197, 26);
             this.textBoxUserPassword.TabIndex = 3;
             // 
             // textBoxUserDisplayName
             // 
-            this.textBoxUserDisplayName.Location = new System.Drawing.Point(482, 195);
+            this.textBoxUserDisplayName.Location = new System.Drawing.Point(310, 111);
             this.textBoxUserDisplayName.Name = "textBoxUserDisplayName";
             this.textBoxUserDisplayName.Size = new System.Drawing.Size(197, 26);
             this.textBoxUserDisplayName.TabIndex = 2;
@@ -183,8 +186,9 @@
             // tabPage2
             // 
             this.tabPage2.BackColor = System.Drawing.Color.White;
-            this.tabPage2.Controls.Add(this.button2);
-            this.tabPage2.Controls.Add(this.button1);
+            this.tabPage2.Controls.Add(this.textBoxSearchUser);
+            this.tabPage2.Controls.Add(this.buttonEditUser);
+            this.tabPage2.Controls.Add(this.buttonDeleteUser);
             this.tabPage2.Controls.Add(this.listViewUsers);
             this.tabPage2.Controls.Add(this.label5);
             this.tabPage2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
@@ -194,6 +198,38 @@
             this.tabPage2.Size = new System.Drawing.Size(1078, 606);
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "Edit Users";
+            // 
+            // textBoxSearchUser
+            // 
+            this.textBoxSearchUser.Location = new System.Drawing.Point(455, 29);
+            this.textBoxSearchUser.Name = "textBoxSearchUser";
+            this.textBoxSearchUser.Size = new System.Drawing.Size(213, 26);
+            this.textBoxSearchUser.TabIndex = 6;
+            this.textBoxSearchUser.TextChanged += new System.EventHandler(this.textBoxSearchUser_TextChanged);
+            this.textBoxSearchUser.Enter += new System.EventHandler(this.textBoxSearchUser_Enter);
+            this.textBoxSearchUser.Leave += new System.EventHandler(this.textBoxSearchUser_Leave);
+            // 
+            // buttonEditUser
+            // 
+            this.buttonEditUser.Location = new System.Drawing.Point(11, 359);
+            this.buttonEditUser.Name = "buttonEditUser";
+            this.buttonEditUser.Size = new System.Drawing.Size(137, 45);
+            this.buttonEditUser.TabIndex = 5;
+            this.buttonEditUser.Text = "Edit User";
+            this.buttonEditUser.UseVisualStyleBackColor = true;
+            this.buttonEditUser.Click += new System.EventHandler(this.buttonEditUser_Click);
+            // 
+            // buttonDeleteUser
+            // 
+            this.buttonDeleteUser.BackColor = System.Drawing.Color.Maroon;
+            this.buttonDeleteUser.ForeColor = System.Drawing.Color.White;
+            this.buttonDeleteUser.Location = new System.Drawing.Point(531, 359);
+            this.buttonDeleteUser.Name = "buttonDeleteUser";
+            this.buttonDeleteUser.Size = new System.Drawing.Size(137, 45);
+            this.buttonDeleteUser.TabIndex = 4;
+            this.buttonDeleteUser.Text = "Delete User";
+            this.buttonDeleteUser.UseVisualStyleBackColor = false;
+            this.buttonDeleteUser.Click += new System.EventHandler(this.buttonDeleteUser_Click);
             // 
             // listViewUsers
             // 
@@ -217,35 +253,16 @@
             this.label5.TabIndex = 1;
             this.label5.Text = "List Of All Users";
             // 
-            // button1
-            // 
-            this.button1.Location = new System.Drawing.Point(11, 359);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(137, 45);
-            this.button1.TabIndex = 3;
-            this.button1.Text = "Edit User";
-            this.button1.UseVisualStyleBackColor = true;
-            // 
-            // button2
-            // 
-            this.button2.BackColor = System.Drawing.Color.Maroon;
-            this.button2.ForeColor = System.Drawing.Color.White;
-            this.button2.Location = new System.Drawing.Point(531, 359);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(137, 45);
-            this.button2.TabIndex = 4;
-            this.button2.Text = "Delete User";
-            this.button2.UseVisualStyleBackColor = false;
-            // 
             // FormAdmin
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1083, 637);
+            this.ClientSize = new System.Drawing.Size(718, 504);
             this.Controls.Add(this.tabControl1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
             this.Name = "FormAdmin";
             this.Text = "Test Generator - Admin Panel";
+            this.Activated += new System.EventHandler(this.FormAdmin_Activated);
             this.Load += new System.EventHandler(this.FormAdmin_Load);
             this.tabControl1.ResumeLayout(false);
             this.tabPage1.ResumeLayout(false);
@@ -255,6 +272,7 @@
             this.ResumeLayout(false);
 
         }
+
 
         #endregion
 
@@ -274,7 +292,8 @@
         private MetroFramework.Controls.MetroButton buttonClearForm;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.ListView listViewUsers;
-        private System.Windows.Forms.Button button2;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button buttonDeleteUser;
+        private System.Windows.Forms.Button buttonEditUser;
+        private System.Windows.Forms.TextBox textBoxSearchUser;
     }
 }

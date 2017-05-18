@@ -14,19 +14,29 @@ namespace TestGenerator.presentation
     {
 
 
-        
+
         public FormAdmin()
         {
             InitializeComponent();
+           
+
         }
 
-        private void FormAdmin_Load(object sender, EventArgs e)
+
+
+        public void FormAdmin_Load(object sender, EventArgs e)
         {
 
             populateRolesComboBox();
             populateUsersList();
 
+            textBoxSearchUser.Text = "Search user ...";
+        }
 
+
+        private void FormAdmin_Activated(object sender, EventArgs e)
+        {
+            populateUsersList();
         }
 
         private void populateRolesComboBox()
@@ -54,9 +64,12 @@ namespace TestGenerator.presentation
             comboBoxUserRoles.DataSource = list; // Bind combobox to a datasource
         }
 
+    
         private void populateUsersList()
         {
-            
+
+            listViewUsers.Clear();
+
             //Get all users
             UserBusiness userBusiness = new UserBusiness();
             
@@ -65,6 +78,7 @@ namespace TestGenerator.presentation
 
 
             List<UserDataModel> usersToShow = userGateway.readAll();
+
             //preapre list view
             listViewUsers.Items.Clear();
             listViewUsers.View = View.Details;
@@ -77,15 +91,46 @@ namespace TestGenerator.presentation
             {
 
                 ListViewItem item = new ListViewItem();
-                                item.Text = user.Display_name.ToString();
 
-                item.SubItems.Add(user.Display_name.ToString());
+                item.Text = user.Display_name.ToString();
+                item.Name = user.Username.ToString();
+                item.SubItems.Add(user.Username.ToString());
                 item.SubItems.Add(user.Role_name.ToString());
 
                 listViewUsers.Items.Add(item);
                 
 
              }
+
+        }
+
+        private void populateUsersList(List<UserDataModel> usersList)
+        {
+
+            listViewUsers.Clear();
+
+            //preapre list view
+            listViewUsers.Items.Clear();
+            listViewUsers.View = View.Details;
+
+            listViewUsers.Columns.Add("Display Name", 350);
+            listViewUsers.Columns.Add("Username", 180);
+            listViewUsers.Columns.Add("User Type", 120);
+
+            foreach (UserDataModel user in usersList)
+            {
+
+                ListViewItem item = new ListViewItem();
+
+                item.Text = user.Display_name.ToString();
+                item.Name = user.Username.ToString();
+                item.SubItems.Add(user.Username.ToString());
+                item.SubItems.Add(user.Role_name.ToString());
+
+                listViewUsers.Items.Add(item);
+
+
+            }
 
         }
 
@@ -137,11 +182,91 @@ namespace TestGenerator.presentation
             labelCreateUserMessage.Visible = false;
         }
 
-        private void button3_Click(object sender, EventArgs e)
+        private void buttonDeleteUser_Click(object sender, EventArgs e)
         {
 
+            if (listViewUsers.SelectedItems.Count > 0)
+            {
+
+                ListViewItem item = listViewUsers.SelectedItems[0];
+
+                //Delete this user by username
+                UserBusiness userBusiness = new UserBusiness(item.Name.ToString());
+
+                if (userBusiness.deleteUserByUsername())
+                {
+                    MessageBox.Show("User Deleted");
+                    populateUsersList();
+                }
+                else
+                {
+                    MessageBox.Show("An error has occurred");
+                }
+            }else
+            {
+                MessageBox.Show("Please select a user");
+            }
+
+
+
         }
-    }
+
+        private void buttonEditUser_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                ListViewItem item = listViewUsers.SelectedItems[0];
+                FormEditUser formToEdit = new FormEditUser(item.Name.ToString(), this);
+                formToEdit.Show();
+            }
+            catch (Exception ex) {
+                MessageBox.Show("Select a user");
+            }
+         
+
+        }
+
+
+        //TextBox Search
+        private void textBoxSearchUser_Enter(object sender, EventArgs e)
+        {
+            if (textBoxSearchUser.Text == "Search user ...")
+            {
+                textBoxSearchUser.Text = "";
+            }
+        }
+
+        private void textBoxSearchUser_Leave(object sender, EventArgs e)
+        {
+            if (textBoxSearchUser.Text == "")
+            {
+                textBoxSearchUser.Text = "Search user ...";
+                textBoxSearchUser.ForeColor = System.Drawing.Color.Gray;
+                populateUsersList();
+            }
+                      
+        }
+
+        private void textBoxSearchUser_TextChanged(object sender, EventArgs e)
+        {
+
+         
+                String currentString = textBoxSearchUser.Text;
+                UserBusiness userBusiness = new UserBusiness(currentString);
+
+                  if (currentString.Length >= 2)
+                {
+                    Console.WriteLine(userBusiness.search().Count);
+                    populateUsersList(userBusiness.search());
+
+                }
+
+            if (currentString.Length == 0)
+            {
+                populateUsersList();
+            }
+        }
+   }
 
   
 

@@ -24,3 +24,5 @@ C:\Users\nagyp\documents\visual studio 2015\Projects\TestGenerator\TestGenerator
 C:\Users\nagyp\documents\visual studio 2015\Projects\TestGenerator\TestGenerator\bin\Debug\MetroFramework.Fonts.dll
 C:\Users\nagyp\documents\visual studio 2015\Projects\TestGenerator\TestGenerator\bin\Debug\MetroFramework.Design.dll
 C:\Users\nagyp\documents\visual studio 2015\Projects\TestGenerator\TestGenerator\obj\Debug\TestGenerator.csprojResolveAssemblyReference.cache
+C:\Users\nagyp\documents\visual studio 2015\Projects\TestGenerator\TestGenerator\obj\Debug\TestGenerator.presentation.FormEditUser.resources
+C:\Users\nagyp\documents\visual studio 2015\Projects\TestGenerator\TestGenerator\obj\Debug\TestGenerator.presentation.FormTeacher.resources

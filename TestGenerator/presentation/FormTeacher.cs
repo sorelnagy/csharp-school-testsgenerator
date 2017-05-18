@@ -16,5 +16,10 @@ namespace TestGenerator.presentation
         {
             InitializeComponent();
         }
+
+        private void FormTeacher_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }
